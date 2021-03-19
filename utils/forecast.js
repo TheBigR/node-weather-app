@@ -6,18 +6,18 @@ const forecast = (lon, lat, callback) => {
     lat +
     ',' +
     lon
-  request({ url, json: true }, (error, response) => {
+  request({ url, json: true }, (error, { body }) => {
     if (error) {
       callback('Unable to reach weather service', undefined)
-    } else if (response.body.error) {
+    } else if (body.error) {
       callback('Unable to find location', undefined)
     } else {
       const foreString =
-        response.body.current.weather_descriptions[0] +
+        body.current.weather_descriptions[0] +
         '. It is currently ' +
-        response.body.current.temperature +
+        body.current.temperature +
         ' degrees out. it feels like ' +
-        response.body.current.feelslike
+        body.current.feelslike
       callback(undefined, foreString)
     }
   })
