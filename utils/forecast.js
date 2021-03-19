@@ -6,7 +6,7 @@ const forecast = (lon, lat, callback) => {
     lat +
     ',' +
     lon
-  request({ url: url, json: true }, (error, response) => {
+  request({ url, json: true }, (error, response) => {
     if (error) {
       callback('Unable to reach weather service', undefined)
     } else if (response.body.error) {
